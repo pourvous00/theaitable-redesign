@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The AI Table - Bringing AI Experts Together</title>
+    <meta name="description" content="At The AI Table, leaders from industry, government, and academia unite to shape the future of artificial intelligence. We explore AI strategy, governance, and societal impact.">
+    
+    <meta property="og:site_name" content="The AI Table"/>
+    <meta property="og:title" content="The AI Table - Bringing AI Experts Together"/>
+    <meta property="og:url" content="https://www.theaitable.org"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:description" content="At The AI Table, leaders from industry, government, and academia unite to shape the future of artificial intelligence."/>
+    
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        :root {
+            --primary: #05438E;
+            --primary-light: #0a5bb8;
+            --primary-dark: #032d5e;
+            --accent: #1e88e5;
+            --light-blue: #e3f2fd;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #05438E 0%, #1e88e5 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, #ffffff 0%, #e3f2fd 50%, #bbdefb 100%);
+        }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(5, 67, 142, 0.1);
+        }
+        
+        .blue-glow {
+            box-shadow: 0 0 60px rgba(5, 67, 142, 0.2);
+        }
+        
+        .stat-number {
+            background: linear-gradient(180deg, #05438E 0%, #1e88e5 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .animate-pulse-slow {
+            animation: pulse-slow 4s ease-in-out infinite;
+        }
+        
+        @keyframes pulse-slow {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.6; }
+        }
+        
+        .card-hover {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px -12px rgba(5, 67, 142, 0.25);
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #05438E;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .report-card {
+            transition: all 0.3s ease;
+        }
+        
+        .report-card:hover {
+            transform: scale(1.02);
+        }
+        
+        .section-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+        
+        .section-reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .blob {
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            animation: blob 8s ease-in-out infinite;
+        }
+        
+        @keyframes blob {
+            0%, 100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+            50% { border-radius: 70% 30% 30% 70% / 70% 70% 30% 30%; }
+        }
+        
+        input, textarea, select {
+            transition: all 0.3s ease;
+        }
+        
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: #05438E !important;
+            box-shadow: 0 0 0 3px rgba(5, 67, 142, 0.2);
+        }
+        
+        .hamburger-line {
+            transition: all 0.3s ease;
+        }
+        
+        .menu-open .hamburger-line:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        
+        .menu-open .hamburger-line:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .menu-open .hamburger-line:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -6px);
+        }
+        
+        .pattern-bg {
+            background-image: radial-gradient(#05438E 1px, transparent 1px);
+            background-size: 30px 30px;
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-800 overflow-x-hidden">
+
+    <!-- Navigation -->
+    <header id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500">
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <!-- Logo -->
+                <a href="#" class="flex items-center gap-3 group">
+                    <div class="w-12 h-12 rounded-full bg-gradient-to-br from-[#05438E] to-[#1e88e5] flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg">
+                        <span class="text-white font-bold text-lg">AI</span>
+                    </div>
+                    <span class="text-xl font-bold text-[#05438E] hidden sm:block">The AI Table</span>
+                </a>
+                
+                <!-- Desktop Navigation -->
+                <nav class="hidden lg:flex items-center gap-8">
+                    <a href="#home" class="nav-link text-sm font-medium text-gray-700 hover:text-[#05438E] transition-colors">Home</a>
+                    <a href="https://www.theaitable.org/who-we-are" class="nav-link text-sm font-medium text-gray-700 hover:text-[#05438E] transition-colors">Who We Are</a>
+                    <a href="https://www.theaitable.org/ai-resource-library" class="nav-link text-sm font-medium text-gray-700 hover:text-[#05438E] transition-colors">AI Resource Library</a>
+                    <a href="https://www.theaitable.org/reports" class="nav-link text-sm font-medium text-gray-700 hover:text-[#05438E] transition-colors">Reports</a>
+                    <a href="https://www.theaitable.org/blog" class="nav-link text-sm font-medium text-gray-700 hover:text-[#05438E] transition-colors">Blog</a>
+                    <a href="https://www.theaitable.org/faq" class="nav-link text-sm font-medium text-gray-700 hover:text-[#05438E] transition-colors">FAQs</a>
+                    <a href="#contact" class="nav-link text-sm font-medium text-gray-700 hover:text-[#05438E] transition-colors">Contact</a>
+                </nav>
+                
+                <!-- CTA & Social -->
+                <div class="hidden lg:flex items-center gap-4">
+                    <a href="https://www.linkedin.com/company/the-ai-table" target="_blank" class="w-10 h-10 rounded-full border border-[#05438E]/20 flex items-center justify-center hover:border-[#05438E] hover:bg-[#05438E] hover:text-white text-[#05438E] transition-all">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                    </a>
+                    <a href="#contact" class="px-6 py-2.5 bg-[#05438E] text-white rounded-full font-semibold text-sm hover:bg-[#1e88e5] transition-colors shadow-lg hover:shadow-xl">
+                        Join Us
+                    </a>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <button id="menuBtn" class="lg:hidden w-10 h-10 flex flex-col items-center justify-center gap-1.5">
+                    <span class="hamburger-line w-6 h-0.5 bg-[#05438E]"></span>
+                    <span class="hamburger-line w-6 h-0.5 bg-[#05438E]"></span>
+                    <span class="hamburger-line w-6 h-0.5 bg-[#05438E]"></span>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="lg:hidden hidden bg-white/95 backdrop-blur-xl border-t border-[#05438E]/10">
+            <nav class="flex flex-col p-6 gap-4">
+                <a href="#home" class="py-2 text-lg font-medium text-gray-700 hover:text-[#05438E] transition-colors">Home</a>
+                <a href="https://www.theaitable.org/who-we-are" class="py-2 text-lg font-medium text-gray-700 hover:text-[#05438E] transition-colors">Who We Are</a>
+                <a href="https://www.theaitable.org/ai-resource-library" class="py-2 text-lg font-medium text-gray-700 hover:text-[#05438E] transition-colors">AI Resource Library</a>
+                <a href="https://www.theaitable.org/reports" class="py-2 text-lg font-medium text-gray-700 hover:text-[#05438E] transition-colors">Reports</a>
+                <a href="https://www.theaitable.org/blog" class="py-2 text-lg font-medium text-gray-700 hover:text-[#05438E] transition-colors">Blog</a>
+                <a href="https://www.theaitable.org/faq" class="py-2 text-lg font-medium text-gray-700 hover:text-[#05438E] transition-colors">FAQs</a>
+                <a href="#contact" class="py-2 text-lg font-medium text-gray-700 hover:text-[#05438E] transition-colors">Contact</a>
+                <a href="#contact" class="mt-4 px-6 py-3 bg-[#05438E] text-white rounded-full font-semibold text-center">Join Us</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-gradient min-h-screen relative overflow-hidden flex items-center pt-20">
+        <!-- Background Elements -->
+        <div class="absolute inset-0 overflow-hidden">
+            <div class="absolute top-20 left-10 w-72 h-72 bg-[#05438E]/10 rounded-full blur-3xl animate-pulse-slow"></div>
+            <div class="absolute bottom-20 right-10 w-96 h-96 bg-[#1e88e5]/20 rounded-full blur-3xl animate-pulse-slow" style="animation-delay: 2s;"></div>
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] border border-[#05438E]/5 rounded-full"></div>
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] border border-[#05438E]/5 rounded-full"></div>
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] border border-[#05438E]/5 rounded-full"></div>
+        </div>
+        
+        <div class="max-w-7xl mx-auto px-6 py-20 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#05438E]/30 bg-white/80 mb-6 shadow-sm">
+                        <span class="w-2 h-2 bg-[#05438E] rounded-full animate-pulse"></span>
+                        <span class="text-sm text-[#05438E] font-medium">Bringing AI Experts Together</span>
+                    </div>
+                    
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+                        <span class="gradient-text">The AI Table.</span><br>
+                        <span class="text-gray-800">Where AI experts come to share, learn, & discuss topics that matter.</span>
+                    </h1>
+                    
+                    <p class="text-lg text-gray-600 mb-8 max-w-xl mx-auto lg:mx-0">
+                        Join us as we spearhead technological & <span class="text-[#05438E] font-semibold">societal advancement</span>.
+                    </p>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                        <a href="#contact" class="px-8 py-4 bg-[#05438E] text-white rounded-full font-semibold hover:bg-[#1e88e5] transition-all hover:scale-105 text-center shadow-lg hover:shadow-xl">
+                            Join the Community
+                        </a>
+                        <a href="#reports" class="px-8 py-4 border-2 border-[#05438E] text-[#05438E] rounded-full font-semibold hover:bg-[#05438E] hover:text-white transition-all text-center">
+                            View Reports
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="relative hidden lg:block">
+                    <div class="relative w-full h-[500px]">
+                        <!-- Floating Images -->
+                        <div class="absolute top-0 right-0 w-64 h-80 rounded-2xl overflow-hidden shadow-2xl animate-float blue-glow">
+                            <img src="https://images.unsplash.com/photo-1531746790731-6c087fecd65a?w=400&h=500&fit=crop" alt="AI Technology" class="w-full h-full object-cover">
+                        </div>
+                        <div class="absolute bottom-0 left-0 w-56 h-72 rounded-2xl overflow-hidden shadow-2xl animate-float" style="animation-delay: -3s;">
+                            <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=500&fit=crop" alt="Team Collaboration" class="w-full h-full object-cover">
+                        </div>
+                        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-[#05438E] rounded-full blur-3xl opacity-10"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce">
+            <span class="text-sm text-gray-500">Scroll</span>
+            <svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Stats Section - Prominent Failure Rate -->
+    <section class="py-20 bg-gradient-to-b from-[#05438E] to-[#032d5e] relative">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="section-reveal bg-white/10 backdrop-blur-xl rounded-3xl p-8 md:p-12 text-center border border-white/20">
+                <div class="max-w-4xl mx-auto">
+                    <p class="text-white/70 uppercase tracking-wider text-sm mb-4">MIT & McKinsey Research</p>
+                    <div class="flex flex-col md:flex-row items-center justify-center gap-4 mb-6">
+                        <span class="text-7xl md:text-9xl font-bold text-white">75-90%</span>
+                        <span class="text-2xl md:text-3xl text-white/90 md:text-left">of current AI<br>projects are <span class="text-red-400 font-semibold">failing</span></span>
+                    </div>
+                    <p class="text-xl text-white/80 mb-8">
+                        Our mission is to correct this — and to promote <span class="text-[#90caf9] font-semibold">AI excellence</span>. We create a forum for Technologists, Business Leaders, Government Executives, Researchers, and Policymakers, to share proven on-the-ground strategies for building out responsible AI capabilities and public policy.
+                    </p>
+                    <a href="#pillars" class="inline-flex items-center gap-2 text-white font-semibold hover:gap-4 transition-all bg-white/20 px-6 py-3 rounded-full hover:bg-white/30">
+                        See how we help
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section id="mission" class="py-24 bg-white relative">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="section-reveal grid lg:grid-cols-2 gap-16 items-center">
+                <div>
+                    <span class="text-[#05438E] font-semibold uppercase tracking-wider text-sm">Who We Are</span>
+                    <h2 class="text-3xl md:text-4xl font-bold mt-4 mb-6 text-gray-800">
+                        A Forum for <span class="gradient-text">AI Excellence</span>
+                    </h2>
+                    <p class="text-lg text-gray-600 mb-6">
+                        We create a forum for Technologists, Business Leaders, Government Executives, Researchers, and Policymakers to share proven on-the-ground strategies for building out responsible and effective AI capabilities.
+                    </p>
+                    <p class="text-gray-600 mb-8">
+                        At The AI Table, leaders from industry, government, and academia unite to shape the future of artificial intelligence. We explore AI strategy, governance, and societal impact—covering innovation, risks, governance, policy, and workforce transformation.
+                    </p>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="px-4 py-2 rounded-full bg-[#e3f2fd] border border-[#05438E]/20 text-[#05438E] text-sm font-medium">AI Strategy</span>
+                        <span class="px-4 py-2 rounded-full bg-[#e3f2fd] border border-[#05438E]/20 text-[#05438E] text-sm font-medium">Governance</span>
+                        <span class="px-4 py-2 rounded-full bg-[#e3f2fd] border border-[#05438E]/20 text-[#05438E] text-sm font-medium">Policy</span>
+                        <span class="px-4 py-2 rounded-full bg-[#e3f2fd] border border-[#05438E]/20 text-[#05438E] text-sm font-medium">Innovation</span>
+                    </div>
+                </div>
+                <div class="relative">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="space-y-4">
+                            <div class="rounded-2xl overflow-hidden h-48 shadow-lg">
+                                <img src="https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?w=400&h=300&fit=crop" alt="Government AI" class="w-full h-full object-cover">
+                            </div>
+                            <div class="rounded-2xl overflow-hidden h-64 shadow-lg">
+                                <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=400&h=400&fit=crop" alt="Team Meeting" class="w-full h-full object-cover">
+                            </div>
+                        </div>
+                        <div class="space-y-4 pt-8">
+                            <div class="rounded-2xl overflow-hidden h-64 shadow-lg">
+                                <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=400&h=400&fit=crop" alt="AI Research" class="w-full h-full object-cover">
+                            </div>
+                            <div class="rounded-2xl overflow-hidden h-48 shadow-lg">
+                                <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?w=400&h=300&fit=crop" alt="Conference" class="w-full h-full object-cover">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="absolute -bottom-6 -left-6 w-32 h-32 bg-[#05438E] rounded-2xl flex items-center justify-center shadow-xl">
+                        <div class="text-center text-white">
+                            <div class="text-3xl font-bold">DC</div>
+                            <div class="text-xs">Based</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Three Pillars Section -->
+    <section id="pillars" class="py-24 bg-[#f8fafc] relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#05438E]/30 to-transparent"></div>
+        <div class="absolute inset-0 pattern-bg opacity-5"></div>
+        
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="section-reveal text-center mb-16">
+                <span class="text-[#05438E] font-semibold uppercase tracking-wider text-sm">Our Pillars</span>
+                <h2 class="text-3xl md:text-4xl font-bold mt-4 text-gray-800">
+                    Three Pillars of <span class="gradient-text">AI Excellence</span>
+                </h2>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Pillar 1 -->
+                <div class="section-reveal card-hover bg-white rounded-3xl p-8 border border-gray-100 shadow-lg group">
+                    <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#05438E] to-[#1e88e5] flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-lg">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-gray-800">AI Reports & Policy Briefs</h3>
+                    <p class="text-gray-600 mb-6">
+                        We author reports and policy briefs, grounded in rigorous analysis and sound data. These resources offer practical recommendations for trailblazers looking to effectively govern AI. We emphasize tackling the application of AI in ways that minimize or eliminate harm. Our findings can be used to inform important governance, public policy, and corporate investment decisions.
+                    </p>
+                    <a href="https://www.theaitable.org/reports" class="inline-flex items-center gap-2 text-[#05438E] font-semibold group-hover:gap-4 transition-all">
+                        View Reports
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </a>
+                </div>
+                
+                <!-- Pillar 2 -->
+                <div class="section-reveal card-hover bg-white rounded-3xl p-8 border border-gray-100 shadow-lg group" style="transition-delay: 0.1s;">
+                    <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#05438E] to-[#1e88e5] flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-lg">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-gray-800">AI Resource Library</h3>
+                    <p class="text-gray-600 mb-6">
+                        Our AI Resource Library is the world's most comprehensive inventory of AI use cases, training, frameworks, policies, and best practice materials — all housed in one centralized, well-organized location. It's designed to support AI decision-makers and practitioners in confidently navigating challenges and applying AI with forethought, skill, and precision.
+                    </p>
+                    <a href="https://www.theaitable.org/ai-resource-library" class="inline-flex items-center gap-2 text-[#05438E] font-semibold group-hover:gap-4 transition-all">
+                        Explore Library
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </a>
+                </div>
+                
+                <!-- Pillar 3 -->
+                <div class="section-reveal card-hover bg-white rounded-3xl p-8 border border-gray-100 shadow-lg group" style="transition-delay: 0.2s;">
+                    <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#05438E] to-[#1e88e5] flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-lg">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-gray-800">AI Talks & Community</h3>
+                    <p class="text-gray-600 mb-6">
+                        Proper communication drives AI learning and advancement. The AI Table drives conversation via the AI Table Talk podcast, webinars, and in-person roundtables. This ecosystem connects leading practitioners, enabling them to share deployment expertise, operational risks, and lessons learned from integrating AI systems into real-world environments.
+                    </p>
+                    <a href="#contact" class="inline-flex items-center gap-2 text-[#05438E] font-semibold group-hover:gap-4 transition-all">
+                        Join Community
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reports Section -->
+    <section id="reports" class="py-24 bg-white relative">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="section-reveal flex flex-col md:flex-row md:items-end md:justify-between mb-12">
+                <div>
+                    <span class="text-[#05438E] font-semibold uppercase tracking-wider text-sm">Latest Research</span>
+                    <h2 class="text-3xl md:text-4xl font-bold mt-4 text-gray-800">
+                        Featured <span class="gradient-text">Reports</span>
+                    </h2>
+                </div>
+                <a href="https://www.theaitable.org/reports" class="mt-4 md:mt-0 inline-flex items-center gap-2 text-gray-600 hover:text-[#05438E] transition-colors">
+                    View All Reports
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                </a>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Report 1 -->
+                <a href="https://www.theaitable.org/s/FINAL-Data-Quality-and-Management-in-AI-Ensuring-Accuracy-Privacy-and-Security-for-Reliable-AI-Outco-p79z.pdf" target="_blank" class="section-reveal report-card group">
+                    <div class="relative rounded-2xl overflow-hidden mb-4 shadow-lg">
+                        <div class="aspect-[3/4] bg-gradient-to-br from-[#05438E] to-[#1e88e5] flex items-center justify-center p-6">
+                            <div class="text-center">
+                                <div class="w-20 h-20 mx-auto mb-4 rounded-xl bg-white/20 flex items-center justify-center">
+                                    <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                                    </svg>
+                                </div>
+                                <h4 class="font-bold text-white">Data Quality and Management in AI</h4>
+                            </div>
+                        </div>
+                        <div class="absolute inset-0 bg-white/0 group-hover:bg-white/10 transition-colors flex items-center justify-center">
+                            <span class="opacity-0 group-hover:opacity-100 transition-opacity px-6 py-3 bg-white text-[#05438E] rounded-full font-semibold shadow-lg">
+                                Download PDF
+                            </span>
+                        </div>
+                    </div>
+                    <h3 class="font-bold text-lg text-gray-800 group-hover:text-[#05438E] transition-colors">Data Quality and Management in AI</h3>
+                    <p class="text-gray-500 text-sm mt-2">Ensuring Accuracy, Privacy, and Security for Reliable AI Outcomes</p>
+                </a>
+                
+                <!-- Report 2 -->
+                <a href="https://www.theaitable.org/s/The-State-of-AI-Implementation-and-Governance-in-the-Financial-Sector-2025-FINAL.pdf" target="_blank" class="section-reveal report-card group" style="transition-delay: 0.1s;">
+                    <div class="relative rounded-2xl overflow-hidden mb-4 shadow-lg">
+                        <div class="aspect-[3/4] bg-gradient-to-br from-[#1e88e5] to-[#64b5f6] flex items-center justify-center p-6">
+                            <div class="text-center">
+                                <div class="w-20 h-20 mx-auto mb-4 rounded-xl bg-white/20 flex items-center justify-center">
+                                    <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    </svg>
+                                </div>
+                                <h4 class="font-bold text-white">State of AI in Financial Sector</h4>
+                            </div>
+                        </div>
+                        <div class="absolute inset-0 bg-white/0 group-hover:bg-white/10 transition-colors flex items-center justify-center">
+                            <span class="opacity-0 group-hover:opacity-100 transition-opacity px-6 py-3 bg-white text-[#05438E] rounded-full font-semibold shadow-lg">
+                                Download PDF
+                            </span>
+                        </div>
+                    </div>
+                    <h3 class="font-bold text-lg text-gray-800 group-hover:text-[#05438E] transition-colors">The State of AI Implementation and Governance</h3>
+                    <p class="text-gray-500 text-sm mt-2">In the Financial Sector 2025</p>
+                </a>
+                
+                <!-- Report 3 -->
+                <a href="https://static1.squarespace.com/static/69118be41affb70151acc6cb/t/69195263e8861c65e14e6224/1763267171475/The+State+of+Artificial+Intelligence+Across+the+United+States+Federal+Government+2025.pdf" target="_blank" class="section-reveal report-card group" style="transition-delay: 0.2s;">
+                    <div class="relative rounded-2xl overflow-hidden mb-4 shadow-lg">
+                        <div class="aspect-[3/4] bg-gradient-to-br from-[#032d5e] to-[#05438E] flex items-center justify-center p-6">
+                            <div class="text-center">
+                                <div class="w-20 h-20 mx-auto mb-4 rounded-xl bg-white/20 flex items-center justify-center">
+                                    <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                                    </svg>
+                                </div>
+                                <h4 class="font-bold text-white">AI Across Federal Government</h4>
+                            </div>
+                        </div>
+                        <div class="absolute inset-0 bg-white/0 group-hover:bg-white/10 transition-colors flex items-center justify-center">
+                            <span class="opacity-0 group-hover:opacity-100 transition-opacity px-6 py-3 bg-white text-[#05438E] rounded-full font-semibold shadow-lg">
+                                Download PDF
+                            </span>
+                        </div>
+                    </div>
+                    <h3 class="font-bold text-lg text-gray-800 group-hover:text-[#05438E] transition-colors">The State of Artificial Intelligence</h3>
+                    <p class="text-gray-500 text-sm mt-2">Across the United States Federal Government 2025</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section id="blog" class="py-24 bg-[#f8fafc] relative">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="section-reveal text-center mb-16">
+                <span class="text-[#05438E] font-semibold uppercase tracking-wider text-sm">Recent Reports & Articles</span>
+                <h2 class="text-3xl md:text-4xl font-bold mt-4 text-gray-800">
+                    Latest from our <span class="gradient-text">Blog</span>
+                </h2>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Blog Post 1 -->
+                <a href="https://www.theaitable.org/blog/unifying-the-enterprise-moving-your-organization-from-ai-experiments-to-an-ai-native-maturity-model13" class="section-reveal group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
+                    <div class="overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop" alt="AI Maturity Model" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="p-6">
+                        <span class="text-[#05438E] text-sm font-medium bg-[#e3f2fd] px-3 py-1 rounded-full">Strategy</span>
+                        <h3 class="font-bold text-lg mt-3 text-gray-800 group-hover:text-[#05438E] transition-colors">Moving Your Org from AI Experiments to an AI-Native Maturity Model</h3>
+                        <p class="text-gray-500 text-sm mt-2">Discover how to evolve your organization's AI capabilities...</p>
+                    </div>
+                </a>
+                
+                <!-- Blog Post 2 -->
+                <a href="https://www.theaitable.org/blog/ai-accountability-whos-responsible-when-machines-decide" class="section-reveal group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow" style="transition-delay: 0.1s;">
+                    <div class="overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=600&h=400&fit=crop" alt="AI Accountability" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="p-6">
+                        <span class="text-[#05438E] text-sm font-medium bg-[#e3f2fd] px-3 py-1 rounded-full">Governance</span>
+                        <h3 class="font-bold text-lg mt-3 text-gray-800 group-hover:text-[#05438E] transition-colors">AI Accountability: Who's Responsible When Machines Decide?</h3>
+                        <p class="text-gray-500 text-sm mt-2">Exploring the critical questions of responsibility in AI...</p>
+                    </div>
+                </a>
+                
+                <!-- Blog Post 3 -->
+                <a href="https://www.theaitable.org/blog/old-systems-are-blocking-ai-dollars" class="section-reveal group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow" style="transition-delay: 0.2s;">
+                    <div class="overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?w=600&h=400&fit=crop" alt="Financial AI" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="p-6">
+                        <span class="text-[#05438E] text-sm font-medium bg-[#e3f2fd] px-3 py-1 rounded-full">Finance</span>
+                        <h3 class="font-bold text-lg mt-3 text-gray-800 group-hover:text-[#05438E] transition-colors">Old Systems Are Blocking AI ROI at Financial Institutions</h3>
+                        <p class="text-gray-500 text-sm mt-2">How legacy infrastructure impacts AI implementation...</p>
+                    </div>
+                </a>
+                
+                <!-- Blog Post 4 -->
+                <a href="https://www.theaitable.org/blog/building-ethical-ai-through-data-lineage-and-pii-auditing" class="section-reveal group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
+                    <div class="overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&h=400&fit=crop" alt="Data Privacy" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="p-6">
+                        <span class="text-[#05438E] text-sm font-medium bg-[#e3f2fd] px-3 py-1 rounded-full">Data</span>
+                        <h3 class="font-bold text-lg mt-3 text-gray-800 group-hover:text-[#05438E] transition-colors">Building AI Responsibly Through Data Lineage and PII Auditing</h3>
+                        <p class="text-gray-500 text-sm mt-2">Essential practices for responsible AI development...</p>
+                    </div>
+                </a>
+                
+                <!-- Blog Post 5 -->
+                <a href="https://www.theaitable.org/blog/securing-national-ai-keeping-ai-data-local-and-safe" class="section-reveal group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow" style="transition-delay: 0.1s;">
+                    <div class="overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&h=400&fit=crop" alt="National AI Security" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="p-6">
+                        <span class="text-[#05438E] text-sm font-medium bg-[#e3f2fd] px-3 py-1 rounded-full">Security</span>
+                        <h3 class="font-bold text-lg mt-3 text-gray-800 group-hover:text-[#05438E] transition-colors">Securing National AI: Keeping AI Data Local and Safe</h3>
+                        <p class="text-gray-500 text-sm mt-2">Strategies for maintaining AI security at a national level...</p>
+                    </div>
+                </a>
+                
+                <!-- Blog Post 6 -->
+                <a href="https://www.theaitable.org/blog" class="section-reveal group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow" style="transition-delay: 0.2s;">
+                    <div class="overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=400&fit=crop" alt="Human AI Collaboration" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="p-6">
+                        <span class="text-[#05438E] text-sm font-medium bg-[#e3f2fd] px-3 py-1 rounded-full">Collaboration</span>
+                        <h3 class="font-bold text-lg mt-3 text-gray-800 group-hover:text-[#05438E] transition-colors">Strategies for Successful Human AI Collaboration</h3>
+                        <p class="text-gray-500 text-sm mt-2">Best practices for integrating AI into human workflows...</p>
+                    </div>
+                </a>
+                
+                <!-- Blog Post 7 -->
+                <a href="https://www.theaitable.org/blog/a-well-governed-semantic-layer-is-an-essential-component-of-explainable-ai-xai21" class="section-reveal group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
+                    <div class="overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1518186285589-2f7649de83e0?w=600&h=400&fit=crop" alt="Semantic Layer" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="p-6">
+                        <span class="text-[#05438E] text-sm font-medium bg-[#e3f2fd] px-3 py-1 rounded-full">Explainable AI</span>
+                        <h3 class="font-bold text-lg mt-3 text-gray-800 group-hover:text-[#05438E] transition-colors">A well-governed Semantic Layer is an essential component of Explainable AI</h3>
+                        <p class="text-gray-500 text-sm mt-2">Understanding the role of semantic layers in AI transparency...</p>
+                    </div>
+                </a>
+                
+                <!-- Blog Post 8 -->
+                <a href="https://www.theaitable.org/blog/scaling-enterprise-ai-the-data-engineers-guide-to-integrating-the-semantic-layer-with-mlops" class="section-reveal group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow" style="transition-delay: 0.1s;">
+                    <div class="overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=600&h=400&fit=crop" alt="Enterprise AI MLOps" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="p-6">
+                        <span class="text-[#05438E] text-sm font-medium bg-[#e3f2fd] px-3 py-1 rounded-full">MLOps</span>
+                        <h3 class="font-bold text-lg mt-3 text-gray-800 group-hover:text-[#05438E] transition-colors">Scaling Enterprise AI: The Data Engineer's Guide to Integrating the Semantic Layer with MLOps</h3>
+                        <p class="text-gray-500 text-sm mt-2">A comprehensive guide for data engineers...</p>
+                    </div>
+                </a>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="https://www.theaitable.org/blog" class="inline-flex items-center gap-2 px-8 py-4 border-2 border-[#05438E] text-[#05438E] rounded-full font-semibold hover:bg-[#05438E] hover:text-white transition-all">
+                    View All Articles
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 bg-white relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-96 h-96 bg-[#e3f2fd] rounded-full blur-3xl"></div>
+        <div class="absolute bottom-0 left-0 w-96 h-96 bg-[#bbdefb] rounded-full blur-3xl"></div>
+        
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-16">
+                <div class="section-reveal">
+                    <span class="text-[#05438E] font-semibold uppercase tracking-wider text-sm">Get In Touch</span>
+                    <h2 class="text-3xl md:text-4xl font-bold mt-4 mb-6 text-gray-800">
+                        Reach out to participate in our <span class="gradient-text">events</span>
+                    </h2>
+                    <p class="text-lg text-gray-600 mb-8">
+                        Share a few details with us, and we'll get back to you soon!
+                    </p>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-[#e3f2fd] flex items-center justify-center flex-shrink-0">
+                                <svg class="w-6 h-6 text-[#05438E]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold mb-1 text-gray-800">Address</h4>
+                                <p class="text-gray-600">1319 F St NW Ste 302<br>Washington, DC 20004</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-[#e3f2fd] flex items-center justify-center flex-shrink-0">
+                                <svg class="w-6 h-6 text-[#05438E]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold mb-1 text-gray-800">Connect</h4>
+                                <div class="flex gap-3 mt-2">
+                                    <a href="https://www.linkedin.com/company/the-ai-table" target="_blank" class="w-10 h-10 rounded-full border border-[#05438E]/20 flex items-center justify-center hover:bg-[#05438E] hover:text-white text-[#05438E] transition-all">
+                                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                                    </a>
+                                    <a href="https://bsky.app/profile/theaitable.bsky.social" target="_blank" class="w-10 h-10 rounded-full border border-[#05438E]/20 flex items-center justify-center hover:bg-[#05438E] hover:text-white text-[#05438E] transition-all">
+                                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm3.5 14.5c-2.5 0-3.5-2.5-3.5-2.5s-1 2.5-3.5 2.5c-2 0-3-1.5-3-3s1.5-2.5 3.5-4c1.5-1.1 3-2.5 3-2.5s1.5 1.4 3 2.5c2 1.5 3.5 2.5 3.5 4s-1 3-3 3z"/></svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="section-reveal">
+                    <form id="contactForm" class="bg-white rounded-3xl p-8 border border-gray-200 shadow-xl">
+                        <div class="grid md:grid-cols-2 gap-6 mb-6">
+                            <div>
+                                <label class="block text-sm font-medium mb-2 text-gray-700">First Name</label>
+                                <input type="text" required class="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 text-gray-800 placeholder-gray-400 focus:border-[#05438E]" placeholder="John">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-2 text-gray-700">Last Name</label>
+                                <input type="text" required class="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 text-gray-800 placeholder-gray-400 focus:border-[#05438E]" placeholder="Doe">
+                            </div>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label class="block text-sm font-medium mb-2 text-gray-700">Email</label>
+                            <input type="email" required class="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 text-gray-800 placeholder-gray-400 focus:border-[#05438E]" placeholder="john@example.com">
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label class="block text-sm font-medium mb-2 text-gray-700">Phone</label>
+                            <input type="tel" class="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 text-gray-800 placeholder-gray-400 focus:border-[#05438E]" placeholder="+1 (555) 000-0000">
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label class="block text-sm font-medium mb-2 text-gray-700">How did you hear about us?</label>
+                            <select class="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 text-gray-800 focus:border-[#05438E]">
+                                <option value="">Select an option</option>
+                                <option value="linkedin">LinkedIn</option>
+                                <option value="search">Search Engine</option>
+                                <option value="referral">Referral</option>
+                                <option value="event">Event</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label class="block text-sm font-medium mb-2 text-gray-700">Message</label>
+                            <textarea rows="4" class="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 text-gray-800 placeholder-gray-400 resize-none focus:border-[#05438E]" placeholder="Tell us about your interest..."></textarea>
+                        </div>
+                        
+                        <div class="space-y-3 mb-8">
+                            <label class="flex items-center gap-3 cursor-pointer group">
+                                <input type="checkbox" class="w-5 h-5 rounded border-gray-300 bg-gray-50 text-[#05438E] focus:ring-[#05438E] focus:ring-offset-0">
+                                <span class="text-sm text-gray-600 group-hover:text-gray-800 transition-colors">Interested in speaking at our events</span>
+                            </label>
+                            <label class="flex items-center gap-3 cursor-pointer group">
+                                <input type="checkbox" class="w-5 h-5 rounded border-gray-300 bg-gray-50 text-[#05438E] focus:ring-[#05438E] focus:ring-offset-0">
+                                <span class="text-sm text-gray-600 group-hover:text-gray-800 transition-colors">Sign up for our AI newsletter</span>
+                            </label>
+                        </div>
+                        
+                        <button type="submit" class="w-full py-4 bg-[#05438E] text-white rounded-xl font-semibold hover:bg-[#1e88e5] transition-colors shadow-lg hover:shadow-xl">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-16 bg-[#05438E] text-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-12 mb-12">
+                <!-- Brand -->
+                <div class="md:col-span-1">
+                    <a href="#" class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center">
+                            <span class="text-[#05438E] font-bold text-sm">AI</span>
+                        </div>
+                        <span class="text-lg font-bold">The AI Table</span>
+                    </a>
+                    <p class="text-white/70 text-sm">
+                        Bringing AI Experts Together to shape the future of artificial intelligence.
+                    </p>
+                </div>
+                
+                <!-- About -->
+                <div>
+                    <h4 class="font-semibold mb-4 text-white">About</h4>
+                    <ul class="space-y-3">
+                        <li><a href="https://www.theaitable.org/who-we-are" class="text-white/70 hover:text-white transition-colors text-sm">Who We Are</a></li>
+                        <li><a href="https://www.theaitable.org/jobs" class="text-white/70 hover:text-white transition-colors text-sm">Careers</a></li>
+                        <li><a href="https://www.theaitable.org/faq" class="text-white/70 hover:text-white transition-colors text-sm">FAQs</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Resource Library -->
+                <div>
+                    <h4 class="font-semibold mb-4 text-white">Resource Library</h4>
+                    <ul class="space-y-3">
+                        <li><a href="https://www.theaitable.org/al-strategy-use-cases" class="text-white/70 hover:text-white transition-colors text-sm">AI Strategy & Use</a></li>
+                        <li><a href="https://www.theaitable.org/ai-governance-policy" class="text-white/70 hover:text-white transition-colors text-sm">AI Governance & Policy</a></li>
+                        <li><a href="https://www.theaitable.org/ai-society" class="text-white/70 hover:text-white transition-colors text-sm">AI & Society</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Contact -->
+                <div>
+                    <h4 class="font-semibold mb-4 text-white">Contact</h4>
+                    <ul class="space-y-3">
+                        <li><a href="https://www.theaitable.org/contact" class="text-white/70 hover:text-white transition-colors text-sm">Say Hello</a></li>
+                        <li class="text-white/70 text-sm">1319 F St NW Ste 302<br>Washington, DC 20004</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="pt-8 border-t border-white/20 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-white/60 text-sm">© 2026 The AI Table. All rights reserved.</p>
+                <div class="flex gap-4">
+                    <a href="https://www.linkedin.com/company/the-ai-table" target="_blank" class="text-white/60 hover:text-white transition-colors">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                    </a>
+                    <a href="https://bsky.app/profile/theaitable.bsky.social" target="_blank" class="text-white/60 hover:text-white transition-colors">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm3.5 14.5c-2.5 0-3.5-2.5-3.5-2.5s-1 2.5-3.5 2.5c-2 0-3-1.5-3-3s1.5-2.5 3.5-4c1.5-1.1 3-2.5 3-2.5s1.5 1.4 3 2.5c2 1.5 3.5 2.5 3.5 4s-1 3-3 3z"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        menuBtn.addEventListener('click', () => {
+            menuBtn.classList.toggle('menu-open');
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Close mobile menu when clicking a link
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                menuBtn.classList.remove('menu-open');
+                mobileMenu.classList.add('hidden');
+            });
+        });
+        
+        // Navbar background on scroll
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('bg-white/95', 'backdrop-blur-xl', 'shadow-lg');
+            } else {
+                navbar.classList.remove('bg-white/95', 'backdrop-blur-xl', 'shadow-lg');
+            }
+        });
+        
+        // Reveal animations on scroll
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+        
+        document.querySelectorAll('.section-reveal').forEach(el => {
+            observer.observe(el);
+        });
+        
+        // Form submission
+        document.getElementById('contactForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Create success message
+            const form = e.target;
+            const button = form.querySelector('button[type="submit"]');
+            const originalText = button.textContent;
+            
+            button.textContent = 'Sending...';
+            button.disabled = true;
+            
+            // Simulate form submission
+            setTimeout(() => {
+                button.textContent = 'Message Sent!';
+                button.classList.remove('bg-[#05438E]');
+                button.classList.add('bg-green-500');
+                
+                setTimeout(() => {
+                    button.textContent = originalText;
+                    button.disabled = false;
+                    button.classList.add('bg-[#05438E]');
+                    button.classList.remove('bg-green-500');
+                    form.reset();
+                }, 2000);
+            }, 1500);
+        });
+        
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
